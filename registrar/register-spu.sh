@@ -8,7 +8,7 @@ while ! nc -z ${SC_PRIVATE_HOST} 9003; do
 done
 
 echo "Configuring fluvio profile..."
-fluvio profile add railway ${SC_PRIVATE_HOST}:9003 railway
+fluvio profile add railway ${SC_PRIVATE_HOST}:9003
 
 echo "Registering SPU ${SPU_ID} with SC..."
 fluvio cluster spu register \
