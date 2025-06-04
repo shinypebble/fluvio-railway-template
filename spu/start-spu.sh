@@ -16,7 +16,7 @@ sleep 10
 echo "Starting SPU..."
 exec ./fluvio-run spu \
   --id ${SPU_ID:-5001} \
-  --public-server ${RAILWAY_PRIVATE_DOMAIN}:9010 \
-  --private-server ${RAILWAY_PRIVATE_DOMAIN}:9011 \
+  --public-server ${RAILWAY_PRIVATE_DOMAIN}:9005 \
+  --private-server ${RAILWAY_PRIVATE_DOMAIN}:9006 \
   --sc-addr ${SC_PRIVATE_HOST}:9004 \
   --log-base-dir /fluvio/data
