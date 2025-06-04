@@ -20,3 +20,4 @@ exec ./fluvio-run spu \
   --private-server ${RAILWAY_PRIVATE_DOMAIN}:9006 \
   --sc-addr ${SC_PRIVATE_HOST}:9004 \
   --log-base-dir /fluvio/data
+  
