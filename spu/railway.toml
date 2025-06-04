@@ -1,6 +1,6 @@
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "sc/Dockerfile.spu"
+dockerfilePath = "spu/Dockerfile.spu"
 
 [deploy]
 restartPolicyType = "ON_FAILURE"
