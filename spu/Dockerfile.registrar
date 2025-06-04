@@ -1,0 +1,8 @@
+FROM rust:alpine AS builder
+RUN apk add --no-cache musl-dev openssl-dev
+RUN cargo install fluvio --version 0.17.3
+
+FROM alpine:latest
+RUN apk add --no-cache openssl
+COPY --from=builder /usr/local/cargo/bin/fluvio /usr/local/bin/fluvio
+CMD ["sh", "-c", "fluvio profile add railway ${SC_PRIVATE_HOST}:9003 railway && fluvio cluster spu register --id ${SPU_ID:-5001} --public-server ${SPU_PRIVATE_DOMAIN}:9010 --private-server ${SPU_PRIVATE_DOMAIN}:9011"]

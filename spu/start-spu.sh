@@ -8,19 +8,11 @@ while ! nc -z ${SC_PRIVATE_HOST} 9004; do
   sleep 5
 done
 
-# Register SPU with SC before starting
-echo "Registering SPU with SC..."
-fluvio cluster spu register \
+# Start SPU directly - it will auto-register with SC
+echo "Starting SPU..."
+exec ./fluvio-run spu \
   --id ${SPU_ID:-5001} \
   --public-server ${RAILWAY_PRIVATE_DOMAIN}:9010 \
   --private-server ${RAILWAY_PRIVATE_DOMAIN}:9011 \
-  --sc-addr ${SC_PRIVATE_HOST}:9004
-
-# Start SPU with IPv6 binding
-echo "Starting SPU..."
-exec fluvio-run spu \
-  --id ${SPU_ID:-5001} \
-  --bind-public [::]:9010 \
-  --bind-private [::]:9011 \
   --sc-addr ${SC_PRIVATE_HOST}:9004 \
   --log-base-dir /fluvio/data
