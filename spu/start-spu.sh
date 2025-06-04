@@ -8,7 +8,11 @@ while ! nc -z ${SC_PRIVATE_HOST} 9004; do
   sleep 5
 done
 
-# Start SPU directly - it will auto-register with SC
+# Give registrar time to register this SPU
+echo "Waiting for SPU registration to complete..."
+sleep 10
+
+# Start SPU
 echo "Starting SPU..."
 exec ./fluvio-run spu \
   --id ${SPU_ID:-5001} \
