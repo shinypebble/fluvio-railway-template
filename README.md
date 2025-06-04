@@ -1,0 +1,1 @@
+deploy fluvio on railway in one click with template
