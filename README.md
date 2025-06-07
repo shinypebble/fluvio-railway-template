@@ -134,11 +134,47 @@ fluvio topic delete <name>           # Delete topic
 # Data operations
 fluvio produce <topic>               # Produce to topic (stdin)
 fluvio consume <topic> -B            # Consume from beginning
-fluvio consume <topic> -d            # Consume with continuous follow
+fluvio consume <topic>               # Consume with continuous follow (default)
 
 # Partitions
 fluvio partition list                # List all partitions
 fluvio partition list -t <topic>     # List topic partitions
+
+# Advanced consume options
+fluvio consume <topic> -d            # Disable continuous (consume once and exit)
+fluvio consume <topic> --tail 10     # Consume last 10 records
+fluvio consume <topic> --head 5      # Consume first 5 records from beginning
+fluvio consume <topic> -k            # Show key-value pairs
+fluvio consume <topic> -A            # Consume from all partitions
+fluvio consume <topic> -p 2          # Consume from specific partition
+fluvio consume <topic> -O json       # Output as JSON
+
+# Advanced produce options  
+fluvio produce <topic> -f file.txt   # Produce from file
+fluvio produce <topic> --key mykey   # Produce with key
+fluvio produce <topic> -p 2          # Produce to specific partition
+echo "data" | fluvio produce <topic> # Produce from pipe
+
+# Topic configuration
+fluvio topic create <name> -p 3      # Create with 3 partitions
+fluvio topic create <name> -r 2      # Create with replication factor 2
+fluvio topic create <name> --retention-time 7d  # 7 day retention
+fluvio topic create <name> --compression-type gzip  # Enable compression
+fluvio topic create <name> --dedup   # Enable deduplication
+
+# SmartModules (WebAssembly stream processing)
+fluvio smartmodule list              # List installed SmartModules
+fluvio consume <topic> --smartmodule <name>  # Apply SmartModule
+fluvio produce <topic> --smartmodule <name>  # Transform before producing
+
+# Profile management
+fluvio profile list                  # List all profiles
+fluvio profile current               # Show current profile
+fluvio profile switch <name>         # Switch to different profile
+
+# Cluster diagnostics
+fluvio version                       # Show Fluvio version
+fluvio cluster check                 # Verify cluster connectivity
 ```
 
 ## 🤔 FAQ
